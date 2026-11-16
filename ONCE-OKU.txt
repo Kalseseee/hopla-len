@@ -1,0 +1,28 @@
+HOPLA LEN - V9
+
+CANLI OYUN: https://skyhop-party.topbookmark2.chatgpt.site
+
+Eski 8080 sunucusunu Ctrl+C ile kapat. ZIP'i AYRI klasore cikart.
+BASLAT.bat dosyasina cift tikla. Node.js LTS gereklidir.
+Tarayicida Ctrl+F5 yap. Ikinizde de V9 yazmali.
+
+SPACE: zipla | SHIFT: kay | HAVADA SHIFT: ileri dal
+SPACE + SHIFT birlikte: zipla ve ileri uzan. Her ucusta bir dalma.
+Iniste hareket kaymaya donusur. WASD/oklar kameraya gore hareket eder.
+S / ASAGI: buzda ters yone basarak frenle. E: atil. R: checkpoint.
+Fareyi surukle: 360 derece kamera.
+
+Orta ve zor parkur: 0,5 saniyede kirilan karolar, dev top yagmuru,
+buz, hiz rampalari, tramplenler ve duvardan cikan boks eldivenleri.
+Karolar 4,5 saniye sonra geri gelir. Bekleyebilir veya baska seridi secebilirsin.
+Tramplenden veya yukaridan rakibin ustune inince onu savurabilirsin.
+
+Lobiye don oda kodunu ve oyunculari korur. Karakterini herkes degistirebilir;
+parkuru oda sahibi degistirir. OYUNDAN CIK odadan ayrilir; host cikarsa oda kapanir.
+Herkes bitirince 3D sonuc acilir. BIR TUR DAHA ile ayni ekip yeniden baslar.
+
+57 otomatik test, iki sekmede oda/konuk dalmasi ve bolum gorunum kontrolu basarili.
+Farkli internet aglari arasinda test yapilmadi. Oda sahibi sekmeyi acik tutmali.
+
+V9: Tum parkurlar %25 genis. Orta: donen denge diskleri. Zor: ritim kapilari.
+Zipla/Shift sesleri ekli. Ucuncu ses baslangicta ve ilk varista bir kez calar.
