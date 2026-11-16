@@ -1,0 +1,8 @@
+import {Vec3} from 'cannon-es';
+export function slideAction(p,{input,grounded,water,dx,dz,t,justJumped},events){
+ if(grounded&&p.body.velocity.y<2){p.airDiveUsed=false;if(p.diveLandingPending&&t-p.diveAt>.08){p.slideUntil=Math.max(p.slideUntil,t+.55);p.diveLandingPending=false;}}
+ const pressed=input.slide&&(!p.slidePressed||justJumped);
+ if(pressed&&!water){if(!grounded&&!p.airDiveUsed){if(dx||dz)p.angle=Math.atan2(dx,dz);p.airDiveUsed=true;p.diveLandingPending=true;p.diveAt=t;p.slideUntil=t+.9;p.body.velocity.x=Math.sin(p.angle)*17;p.body.velocity.z=Math.cos(p.angle)*17;p.body.velocity.y=Math.max(p.body.velocity.y,2);p.boostUntil=Math.max(p.boostUntil,t+.55);p.boostSource='dive';events.push({id:p.id,kind:'dive'});}else if(grounded&&t-p.lastSlide>1.1){p.slideUntil=t+.72;p.lastSlide=t;if(dx||dz)p.angle=Math.atan2(dx,dz);p.body.velocity.x=Math.sin(p.angle)*14;p.body.velocity.z=Math.cos(p.angle)*14;events.push({id:p.id,kind:'slide'});}}
+ p.slidePressed=!!input.slide;p.diving=!grounded&&!!p.airDiveUsed&&t<p.slideUntil;
+}
+export function resolveStomps(players,t,events){const list=[...players.values()];for(const a of list){if(a.finished||a.body.velocity.y>-3||t-(a.stompAt??-10)<.8)continue;for(const b of list){if(a===b||b.finished)continue;const dy=a.body.position.y-b.body.position.y,d=Math.hypot(a.body.position.x-b.body.position.x,a.body.position.z-b.body.position.z);if(d<.82&&dy>.9&&dy<1.9){a.stompAt=t;a.body.velocity.y=9;b.body.velocity.set(Math.sin(a.angle)*16,-9,Math.cos(a.angle)*16);b.boostUntil=t+.8;b.boostSource='stomp';a.body.position.y=Math.max(a.body.position.y,b.body.position.y+1.7);a.body.aabbNeedsUpdate=b.body.aabbNeedsUpdate=true;events.push({id:a.id,kind:'stomp'},{id:b.id,kind:'stomped'});break;}}}}
